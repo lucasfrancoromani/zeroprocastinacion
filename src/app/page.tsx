@@ -183,7 +183,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CTA + COMPARATIVA ===== */}
+      {/* ===== CTA + COMPARATIVA =====_ */}
       <section id="cta" data-section="cta" className="bg-[#0d1422]">
         <div className="mx-auto max-w-6xl px-6 py-20 space-y-20">
           {/* CTA */}
