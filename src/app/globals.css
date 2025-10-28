@@ -1,4 +1,28 @@
-@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fuente por defecto desde layout: Inter */
+:root {
+  color-scheme: dark;
+}
+
+/* Patrón sutil para diferenciar la landing del portfolio */
+.hero-pattern {
+  background-image:
+    radial-gradient(transparent 1px, rgba(255,255,255,0.03) 1px),
+    radial-gradient(transparent 1px, rgba(255,255,255,0.04) 1px);
+  background-size: 24px 24px, 48px 48px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Opcional: helpers */
+.container-max {
+  @apply mx-auto max-w-6xl px-6;
+}
+
+
 
 :root {
   --background: #ffffff;
