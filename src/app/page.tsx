@@ -197,7 +197,6 @@ export default function Home() {
               </div>
               <div className="md:col-span-5">
                 <SubscribeForm />
-                <p className="mt-2 text-xs text-white/50">Sin spam. Cancelás cuando quieras.</p>
               </div>
             </div>
           </div>
