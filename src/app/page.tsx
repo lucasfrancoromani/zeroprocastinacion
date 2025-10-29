@@ -143,7 +143,7 @@ export default function Home() {
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-6">
               <h2 className="text-3xl md:text-4xl font-bold">
-                La <span className="text-brand-cyan">Guía Zero</span> — directa al grano
+                El <span className="text-brand-cyan">Método Zero</span> — directo al grano
               </h2>
               <p className="mt-3 text-white/75">
                 En 10–15 páginas te explica por qué procrastinás, cómo romper el ciclo y aplicar el método Zero con un plan de 7 días.
