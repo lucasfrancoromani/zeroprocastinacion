@@ -258,7 +258,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
+      {/* ===== FOOTER =====aaa */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-6 py-10 text-sm text-white/60 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>© {new Date().getFullYear()} Zero Procrastinación</div>
