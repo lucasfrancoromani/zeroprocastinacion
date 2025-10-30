@@ -1,5 +1,6 @@
 import ConversionEvent from "../components/ConversionEvent";
 import MetaEvent from "../components/MetaEvent";
+import TikTokEvent from "../components/TikTokEvent";
 
 export default function GraciasPage() {
   return (
@@ -10,6 +11,7 @@ export default function GraciasPage() {
         params={{ method: "formspree", item: "guia_gratuita" }}
       />
       <MetaEvent event="Lead" params={{ content_name: "guia_gratuita" }} />
+      <TikTokEvent event="CompleteRegistration" params={{ content_name: "guia_gratuita" }} />
 
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
