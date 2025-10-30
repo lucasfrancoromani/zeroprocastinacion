@@ -1,13 +1,15 @@
 import ConversionEvent from "../components/ConversionEvent";
+import MetaEvent from "../components/MetaEvent";
 
 export default function GraciasPage() {
   return (
     <main className="min-h-[70vh] bg-brand-dark text-brand-white">
-      {/* ✅ Marca la conversión al cargar la página */}
+      {/* ✅ Conversiones */}
       <ConversionEvent
         event="generate_lead"
         params={{ method: "formspree", item: "guia_gratuita" }}
       />
+      <MetaEvent event="Lead" params={{ content_name: "guia_gratuita" }} />
 
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
