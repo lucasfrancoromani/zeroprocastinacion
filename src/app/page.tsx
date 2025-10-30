@@ -1,6 +1,8 @@
 import SubscribeForm from "./components/SubscribeForm";
 
 export default function Home() {
+  const payLink = process.env.NEXT_PUBLIC_PAY_LINK || "#";
+
   return (
     <main className="min-h-screen">
       {/* ===== HEADER ===== */}
@@ -117,7 +119,6 @@ export default function Home() {
                 Técnicas simples para empezar ahora y sostener el hábito sin depender de la motivación.
               </p>
             </div>
-
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
               <div className="text-3xl">⏱️</div>
               <h3 className="mt-4 text-xl font-semibold">Método simple</h3>
@@ -125,7 +126,6 @@ export default function Home() {
                 Pasos claros y concretos. Lo justo para avanzar, sin sobrecargarte.
               </p>
             </div>
-
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
               <div className="text-3xl">🚀</div>
               <h3 className="mt-4 text-xl font-semibold">Resultados visibles</h3>
@@ -183,10 +183,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CTA + COMPARATIVA =====_ */}
+      {/* ===== CTA + COMPARATIVA ===== */}
       <section id="cta" data-section="cta" className="bg-[#0d1422]">
         <div className="mx-auto max-w-6xl px-6 py-20 space-y-20">
-          {/* CTA */}
+          {/* CTA de captura */}
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-8 md:p-12">
             <div className="grid gap-8 md:grid-cols-12 md:items-center">
               <div className="md:col-span-7">
@@ -201,7 +201,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* COMPARATIVA */}
+          {/* Comparativa */}
           <div className="text-center">
             <h3 className="text-3xl font-bold mb-8">Elegí tu versión</h3>
             <div className="grid gap-6 md:grid-cols-2">
@@ -235,28 +235,30 @@ export default function Home() {
                   <li>✔ Bonos extra (hábitos + focus)</li>
                 </ul>
                 <a
-                  href="#"
+                  href={payLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-cyan px-6 py-2 font-semibold text-black hover:opacity-90 transition"
                 >
-                  Comprar (€9)
+                  Comprar (ARS $15.000)
                 </a>
               </div>
             </div>
           </div>
 
-          {/* MICROCOPYS */}
+          {/* Microcopys */}
           <div className="text-center space-y-6">
             <h4 className="text-xl font-bold text-brand-cyan">¿Todavía dudás?</h4>
             <div className="max-w-3xl mx-auto text-white/70 space-y-3">
-              <p>🕒 “No tengo tiempo.” → Precisamente por eso esta guía existe: acciones de menos de 15 min/día.</p>
-              <p>🤔 “Ya probé de todo.” → Este método no te motiva, te organiza. Te da estructura, no frases vacías.</p>
-              <p>💸 “¿Vale la pena pagar?” → Probá la versión gratis primero. Si ves resultados, recién ahí pasás a la completa.</p>
+              <p>🕒 “No tengo tiempo.” → Acciones de menos de 15 min/día.</p>
+              <p>🤔 “Ya probé de todo.” → Esto te organiza: estructura motivación.</p>
+              <p>💸 “¿Vale pagar?” → Probá gratis. Si te sirve, pasás a la completa.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
+      {/* ===== FOOTER =====aaa */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-6 py-10 text-sm text-white/60 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>© {new Date().getFullYear()} Zero Procrastinación</div>
@@ -264,7 +266,10 @@ export default function Home() {
             <a href="#" className="hover:text-white">Instagram</a>
             <a href="#" className="hover:text-white">TikTok</a>
             <a href="#" className="hover:text-white">YouTube</a>
-            <a href="#" className="hover:text-white">Contacto</a>
+            <a href="mailto:contacto@zeroprocrastinacion.com" className="hover:text-white">
+              contacto@zeroprocrastinacion.com
+            </a>
+            <a href="/legal/privacidad" className="hover:text-white">Privacidad</a>
           </div>
         </div>
       </footer>
