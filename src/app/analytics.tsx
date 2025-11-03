@@ -1,73 +1,62 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "";
-const TIKTOK_PIXEL_ID = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID || "";
+const TIKTOK_PIXEL_ID = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID || ""; // D41P443C77UCH1AE8MFG en prod
 
 export default function Analytics() {
-  // 1) Definimos el STUB de TikTok ANTES de que la app ejecute efectos (cola segura)
-  //    Esto permite que cualquier llamada a ttq.track() se encole aunque el SDK no esté cargado aún.
-  //    Usamos Script "beforeInteractive" para que se ejecute lo más temprano posible.
-  //    (Ojo: no llamamos a ttq.load() acá; solo definimos el stub.)
-  const TikTokStub = (
-    <Script id="ttq-stub" strategy="beforeInteractive">
-      {`
-        (function (w, d, t) {
-          if (w[t]) return; // si ya existe, no duplicar
-          w.TiktokAnalyticsObject = t;
-          var ttq = w[t] = w[t] || [];
-          ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
-          ttq.setAndDefer = function (t, e) {
-            t[e] = function () {
-              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
-            }
-          };
-          for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-        })(window, document, 'ttq');
-      `}
-    </Script>
-  );
-
-  // 2) Carga del SDK y ttq.load(ID) una vez montado (sin carreras con el DOM)
-  useEffect(() => {
-    if (!TIKTOK_PIXEL_ID) return;
-
-    const w = window as any;
-    const ttq = w.ttq;
-
-    // Evitar doble inicialización si navegás entre páginas
-    if (ttq && ttq.loaded) {
-      try {
-        ttq.page();
-      } catch {}
-      return;
-    }
-
-    // Inserta el script oficial
-    const src = "https://analytics.tiktok.com/i18n/pixel/events.js";
-    const s = document.createElement("script");
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = src;
-    const firstScript = document.getElementsByTagName("script")[0];
-    firstScript?.parentNode?.insertBefore(s, firstScript);
-
-    // Cuando el tag esté listo, TikTok lee lo que haya encolado el stub
-    try {
-      ttq.load?.(TIKTOK_PIXEL_ID);
-      ttq.page?.();
-    } catch {}
-  }, []);
-
   return (
     <>
-      {/* ===== TikTok STUB (temprano) ===== */}
-      {TikTokStub}
+      {/* ===== TikTok Pixel (bootstrap + sdkid) ===== */}
+      {TIKTOK_PIXEL_ID && (
+        <>
+          <Script id="tiktok-bootstrap" strategy="beforeInteractive">
+            {`
+              !function (w, d, t) {
+                w.TiktokAnalyticsObject = t;
+                var ttq = w[t] = w[t] || [];
+                ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+                ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+                for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
 
-      {/* ===== GA4 base ===== */}
+                // Versión que añade ?sdkid=
+                ttq.load = function (id, opts) {
+                  var base = "https://analytics.tiktok.com/i18n/pixel/events.js";
+                  var u = base + "?sdkid=" + encodeURIComponent(id) + "&lib=ttq";
+                  ttq._i = ttq._i || {}; ttq._i[id] = []; ttq._i[id]._u = u;
+                  ttq._t = ttq._t || {}; ttq._t[id] = +new Date();
+                  ttq._o = ttq._o || {}; ttq._o[id] = opts || {};
+                  var s = d.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = u;
+                  var a = d.getElementsByTagName("script")[0]; a.parentNode.insertBefore(s, a);
+                };
+              }(window, document, 'ttq');
+            `}
+          </Script>
+
+          <Script id="tiktok-init" strategy="afterInteractive">
+            {`
+              (function(){
+                var id='${TIKTOK_PIXEL_ID}';
+                if (!id) return;
+                try {
+                  window.ttq && window.ttq.debug && window.ttq.debug(true);
+                  // Evitar doble init: si ya está inicializado, sólo page()
+                  if (window.ttq && window.ttq._i && window.ttq._i[id]) {
+                    window.ttq.page && window.ttq.page();
+                  } else {
+                    window.ttq && window.ttq.load && window.ttq.load(id);
+                    window.ttq && window.ttq.page && window.ttq.page();
+                  }
+                } catch(e) {}
+              })();
+            `}
+          </Script>
+        </>
+      )}
+
+      {/* ===== GA4 ===== */}
       {GA_ID && (
         <>
           <Script
@@ -85,7 +74,7 @@ export default function Analytics() {
         </>
       )}
 
-      {/* ===== Meta Pixel base ===== */}
+      {/* ===== Meta Pixel ===== */}
       {META_PIXEL_ID && (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">
@@ -116,4 +105,3 @@ export default function Analytics() {
     </>
   );
 }
-

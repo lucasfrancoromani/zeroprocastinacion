@@ -1,48 +1,55 @@
-import ConversionEvent from "../components/ConversionEvent";
-import MetaEvent from "../components/MetaEvent";
-import TikTokEvent from "../components/TikTokEvent";
+"use client";
+
+import { useEffect } from "react";
 
 export default function GraciasPage() {
+  useEffect(() => {
+    // GA4
+    // @ts-ignore
+    const gtag = (window as any)?.gtag;
+    if (typeof gtag === "function") {
+      gtag("event", "generate_lead", { value: 1, currency: "EUR", method: "formspree", item: "guia_gratuita" });
+    }
+
+    // Meta
+    const fbq = (window as any)?.fbq;
+    if (typeof fbq === "function") {
+      fbq("track", "Lead", { content_name: "guia_gratuita" });
+    }
+
+    // TikTok (espera a que esté ttq)
+    const id = (window as any)?.ttq?._i ? Object.keys((window as any).ttq._i)[0] : null;
+    const trackTTQ = () => {
+      const ttq = (window as any)?.ttq;
+      if (ttq && typeof ttq.track === "function") {
+        ttq.track("CompleteRegistration", { content_name: "guia_gratuita" });
+        return true;
+      }
+      return false;
+    };
+    if (!trackTTQ()) setTimeout(trackTTQ, 200);
+  }, []);
+
   return (
     <main className="min-h-[70vh] bg-brand-dark text-brand-white">
-      {/* ✅ Conversiones */}
-      <ConversionEvent
-        event="generate_lead"
-        params={{ method: "formspree", item: "guia_gratuita" }}
-      />
-      <MetaEvent event="Lead" params={{ content_name: "guia_gratuita" }} />
-      <TikTokEvent event="CompleteRegistration" params={{ content_name: "guia_gratuita" }} />
-
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-cyan" />
           Confirmación
         </div>
-
-        <h1 className="mt-4 text-4xl font-extrabold tracking-tight">
-          ¡Gracias por suscribirte! 🎉
-        </h1>
-
+        <h1 className="mt-4 text-4xl font-extrabold tracking-tight">¡Gracias por suscribirte! 🎉</h1>
         <p className="mt-4 text-white/75">
           Te acabamos de enviar un email con la guía gratuita <strong>“Cómo dejar de procrastinar en 7 días”</strong>.
-          Si no lo ves, revisá la carpeta de <em>spam</em> o <em>promociones</em>.
+          Si no lo ves, revisá <em>spam</em> o <em>promociones</em>.
         </p>
-
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <a
-            href="#beneficios"
-            className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-semibold hover:bg-white/10 transition"
-          >
+          <a href="#beneficios" className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-semibold hover:bg-white/10 transition">
             Ver beneficios del método
           </a>
-          <a
-            href="#cta"
-            className="rounded-xl bg-brand-cyan px-5 py-3 font-semibold text-black hover:opacity-90 transition"
-          >
+          <a href="#cta" className="rounded-xl bg-brand-cyan px-5 py-3 font-semibold text-black hover:opacity-90 transition">
             Quiero el plan completo (€9)
           </a>
         </div>
-
         <p className="mt-8 text-sm text-white/60">
           Tip: añadí <strong>contacto@zeroprocrastinacion.com</strong> a tus contactos para asegurar la entrega.
         </p>
