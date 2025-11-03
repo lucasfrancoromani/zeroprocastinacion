@@ -18,8 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className={`${inter.variable} font-sans bg-brand-dark text-brand-white`}>
-        {children}
+        {/* ✅ Inicializa los píxeles antes de renderizar las páginas */}
         <Analytics />
+        {children}
       </body>
     </html>
   );
