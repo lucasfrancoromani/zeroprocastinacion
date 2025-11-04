@@ -1,14 +1,14 @@
 import SubscribeForm from "./components/SubscribeForm";
 
 export default function Home() {
-  // ✅ usamos variable de entorno (no hardcodeo)
+  // ✅ usamos variable de entorno (sin hardcodear)
   const payLink = process.env.NEXT_PUBLIC_PAY_LINK || "#";
 
   return (
     <main className="min-h-screen">
       {/* ===== HEADER ===== */}
       <header className="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
-        {/* LOGO protagonista (tu svg/png en /public/images/logo-zero.svg) */}
+        {/* LOGO protagonista */}
         <a href="/" className="flex items-center gap-3 group">
           <img
             src="/images/logo-zero.png"
@@ -76,7 +76,7 @@ export default function Home() {
             <div className="relative">
               <div className="absolute -inset-6 rounded-full bg-brand-cyan/20 blur-3xl" />
               <div className="relative bg-white/5 rounded-3xl border border-white/10 p-6 backdrop-blur-sm flex flex-col items-center">
-                <img src="/images/icon-ray.png" alt="Marca Zero" className="h-40 w-40" />
+                <img src="/images/icon-ray.png" alt="Marca Zero" className="h-40 w-auto" />
                 <p className="mt-4 text-white/80 font-medium text-center max-w-[300px]">
                   “Cero excusas. Cien por ciento acción.”
                 </p>
@@ -166,7 +166,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl px-6 pb-6">
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-8 md:p-10">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              {/* Foto del usuario (poné tu foto en /public/images/user-testimonial.jpg) */}
+              {/* Foto del usuario */}
               <div className="shrink-0 relative">
                 <div className="absolute -inset-2 rounded-full bg-brand-cyan/20 blur-2xl" />
                 <img
@@ -192,7 +192,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Mini métricas opcionales */}
+            {/* Mini métricas */}
             <div className="mt-6 grid grid-cols-3 gap-4 text-center text-sm text-white/70">
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                 <div className="text-xl font-semibold text-brand-cyan">7 días</div>
@@ -212,50 +212,62 @@ export default function Home() {
       </section>
 
       {/* ===== GUÍA ===== */}
-      <section id="guia" className="bg-brand-dark">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-6">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                El <span className="text-brand-cyan">Método Zero</span> — directo al grano
-              </h2>
-              <p className="mt-3 text-white/75">
-                En 10–15 páginas te explica por qué procrastinás, cómo romper el ciclo y aplicar el método Zero con un plan de 7 días.
-              </p>
-              <ul className="mt-6 space-y-3 text-white/80">
-                <li>• Por qué procrastinamos (sin tecnicismos).</li>
-                <li>• Los 3 errores más comunes que te frenan.</li>
-                <li>• Método Zero paso a paso.</li>
-                <li>• Plan de 7 días + checklist imprimible.</li>
-                <li>• Plantilla de seguimiento y cierre motivador.</li>
-              </ul>
-            </div>
+<section id="guia" className="bg-[#0b1220]">
+  <div className="mx-auto max-w-6xl px-6 py-20">
+    <div className="grid md:grid-cols-12 gap-10 items-center">
+      {/* Texto principal */}
+      <div className="md:col-span-6 space-y-5">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-cyan" />
+          Contenido de la guía
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold">
+          <span className="text-brand-cyan">Cómo dejar de procrastinar</span> en 7 días
+        </h2>
+        <p className="text-white/75 leading-relaxed">
+          El <strong>Método Zero</strong> combina acción inmediata con estructura mental. Vas a descubrir por qué postergás,
+          cómo reprogramar tu enfoque y cómo pasar del bloqueo a la acción sostenida.
+        </p>
+        <ul className="space-y-3 text-white/80 text-sm">
+          <li>📘 Introducción: por qué procrastinamos y cómo detectarlo.</li>
+          <li>💡 Los 3 errores que te hacen perder enfoque y energía.</li>
+          <li>⚙️ El Método Zero paso a paso (aplicación práctica).</li>
+          <li>🗓️ Plan de 7 días + checklist imprimible.</li>
+          <li>🧭 Plantilla de seguimiento y reflexión final.</li>
+        </ul>
+        <p className="text-sm text-white/60 pt-4">
+          Incluye versión <strong>gratuita</strong> y <strong>completa</strong> con materiales adicionales.
+        </p>
+        <a
+          href="#cta"
+          className="inline-flex items-center justify-center rounded-full bg-brand-cyan px-6 py-3 mt-5 font-semibold text-black hover:opacity-90 transition"
+        >
+          Ver opciones de descarga
+        </a>
+      </div>
 
-            <div className="md:col-span-6">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/0 aspect-[3/4] flex items-center justify-center">
-                    <div className="text-center px-4">
-                      <div className="text-2xl">📘</div>
-                      <p className="mt-2 text-sm text-white/70">Portada</p>
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/0 aspect-[3/4] flex items-center justify-center">
-                    <div className="text-center px-4">
-                      <div className="text-2xl">✅</div>
-                      <p className="mt-2 text-sm text-white/70">Checklist 7 días</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/80">
-                  <strong>Versión gratuita:</strong> resumen con consejos clave. <br />
-                  <strong>Versión completa:</strong> guía + planificador + bonos.
-                </div>
-              </div>
+      {/* Visual guía */}
+      <div className="md:col-span-6">
+        <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-transparent p-6 backdrop-blur-sm">
+          <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-brand-cyan/10 blur-3xl" />
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-5 aspect-[3/4] text-center">
+              <div className="text-4xl mb-2">📘</div>
+              <p className="text-sm text-white/80 font-medium">Guía completa</p>
+              <span className="text-xs text-white/50">Páginas prácticas</span>
+            </div>
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-5 aspect-[3/4] text-center">
+              <div className="text-4xl mb-2">🧩</div>
+              <p className="text-sm text-white/80 font-medium">Checklist y planificador</p>
+              <span className="text-xs text-white/50">para aplicar día a día</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* ===== CTA + COMPARATIVA ===== */}
       <section id="cta" data-section="cta" className="bg-[#0a1020]">
@@ -368,18 +380,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-6 py-10 text-sm text-white/60 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>© {new Date().getFullYear()} Zero Procrastinación</div>
-          <div className="flex items-center gap-5">
-            <a href="#" className="hover:text-white">Instagram</a>
-            <a href="#" className="hover:text-white">TikTok</a>
-            <a href="#" className="hover:text-white">YouTube</a>
-            <a href="mailto:contacto@zeroprocrastinacion.com" className="hover:text-white">
-              contacto@zeroprocrastinacion.com
+      {/* ===== FOOTER (nuevo) ===== */}
+      <footer className="border-t border-white/10 bg-[#0a0f1d]">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            {/* Marca + claim */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <img src="/images/icon-ray.png" alt="Zero Procrastinación" className="h-7 w-auto" />
+                <span className="text-white/80 font-semibold">Zero Procrastinación</span>
+              </div>
+              <p className="text-white/60 text-sm">
+                Hecho con 💙 para pasar de idea a acción. <br className="hidden sm:block" />
+                “Cero excusas. Cien por ciento acción.”
+              </p>
+              <div className="flex items-center gap-4 text-white/60">
+                <a href="mailto:contacto@zeroprocrastinacion.com" className="hover:text-white underline underline-offset-4">
+                  contacto@zeroprocrastinacion.com
+                </a>
+              </div>
+            </div>
+
+            {/* Navegación */}
+            <nav className="grid grid-cols-2 gap-6 text-sm text-white/70">
+              <div className="space-y-2">
+                <a href="#beneficios" className="block hover:text-white">Beneficios</a>
+                <a href="#guia" className="block hover:text-white">Guía</a>
+                <a href="#cta" className="block hover:text-white">Descargar</a>
+              </div>
+              <div className="space-y-2">
+                <a href="/legal/privacidad" className="block hover:text-white">Privacidad</a>
+                <a href="#" className="block hover:text-white">Términos</a>
+                <a href="#" className="block hover:text-white">Soporte</a>
+              </div>
+            </nav>
+
+            {/* Social minimal */}
+            <div className="flex items-center gap-4">
+              {/* Reemplazá los href por tus perfiles */}
+              <a href="#" aria-label="Instagram" className="group">
+                <svg viewBox="0 0 24 24" className="h-6 w-6 fill-white/60 group-hover:fill-white transition"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 .001 10.001A5 5 0 0 0 12 7zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6Zm5.5-.9a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2Z"/></svg>
+              </a>
+              <a href="#" aria-label="TikTok" className="group">
+                <svg viewBox="0 0 24 24" className="h-6 w-6 fill-white/60 group-hover:fill-white transition"><path d="M17 2c.3 2.1 1.7 3.9 4 4.3v3.1c-1.5 0-2.9-.5-4-1.3v6.7a6.9 6.9 0 1 1-6.9-6.9c.5 0 1 .1 1.4.2v3.2a3.8 3.8 0 1 0 2.7 3.6V2H17z"/></svg>
+              </a>
+              <a href="#" aria-label="YouTube" className="group">
+                <svg viewBox="0 0 24 24" className="h-6 w-6 fill-white/60 group-hover:fill-white transition"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 .5 5.8a3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 16 24 12 24 12s0-4-.5-5.8ZM9.6 15.5v-7l6.4 3.5-6.4 3.5Z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Línea base */}
+          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
+            <p>© {new Date().getFullYear()} Zero Procrastinación. Todos los derechos reservados.</p>
+            <a href="#" className="inline-flex items-center gap-2 hover:text-white">
+              Volver arriba
+              <span className="inline-block h-4 w-4 rotate-180">↴</span>
             </a>
-            <a href="/legal/privacidad" className="hover:text-white">Privacidad</a>
           </div>
         </div>
       </footer>
