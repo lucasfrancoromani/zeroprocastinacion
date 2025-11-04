@@ -160,6 +160,55 @@ export default function Home() {
   </div>
 </section>
 
+{/* ===== TESTIMONIO / SOCIAL PROOF ===== */}
+<section className="bg-[#0b1220]">
+  <div className="mx-auto max-w-5xl px-6 pb-6">
+    <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-8 md:p-10">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+        {/* Foto del usuario */}
+        <div className="shrink-0 relative">
+          <div className="absolute -inset-2 rounded-full bg-brand-cyan/20 blur-2xl" />
+          <img
+            src="/images/user-testimonial.jpg"
+            alt="Usuario del Método Zero"
+            className="relative h-20 w-20 rounded-full border border-white/10 object-cover"
+          />
+        </div>
+
+        {/* Cita */}
+        <div className="flex-1">
+          <p className="text-lg md:text-xl text-white/90 leading-relaxed italic">
+            “Después de 7 días entendí que no me faltaba motivación, me faltaba <span className="text-brand-cyan font-semibold not-italic">método</span>.
+            Con pequeñas acciones de menos de 15 minutos empecé a cumplir lo que venía pateando hace meses.”
+          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-white/60">
+            <span className="font-semibold text-white/90">Mariana Torres</span>
+            <span className="text-white/40">•</span>
+            <span>Emprendedora digital</span>
+            <span className="text-white/30">•</span>
+            <span>Usuario del Método Zero</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Mini métricas opcionales */}
+      <div className="mt-6 grid grid-cols-3 gap-4 text-center text-sm text-white/70">
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+          <div className="text-xl font-semibold text-brand-cyan">7 días</div>
+          <div>para salir de la inercia</div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+          <div className="text-xl font-semibold text-brand-cyan">15 min</div>
+          <div>sesiones de arranque</div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+          <div className="text-xl font-semibold text-brand-cyan">1 método</div>
+          <div>para sostener el hábito</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ===== GUÍA ===== */}
       <section id="guia" className="bg-brand-dark">
